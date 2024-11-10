@@ -23,17 +23,17 @@ def aggregate_data(df):
         count=('ACTUAL_WORK_IN_MINUTES', 'count')
     ).reset_index()
     
-    pivoted_df = agg_df.pivot_table(
+    planned_vs_unplanned_key = agg_df.pivot_table(
         index=['PRODUCTION_LOCATION', 'FUNCTIONAL_AREA_NODE_2_MODIFIED', 'EQUIPMENT_ID'],
         columns='MAINTENANCE_ACTIVITY_TYPE',
         values=['average_minutes', 'count']
     ).reset_index()
     
-    pivoted_df.columns = ['_'.join(col).strip() if isinstance(col, tuple) else col for col in pivoted_df.columns]
-    pivoted_df['time_saved'] = (
-        (pivoted_df['average_minutes_Unplanned'] - pivoted_df['average_minutes_Planned']) / pivoted_df['average_minutes_Unplanned'] * 100
-    )
-    return pivoted_df
+    planned_vs_unplanned_key.columns = ['_'.join(col).strip() if isinstance(col, tuple) else col for col in planned_vs_unplanned_key.columns]
+    # planned_vs_unplanned_key['time_saved'] = (
+    #     (planned_vs_unplanned_key['average_minutes_Unplanned'] - planned_vs_unplanned_key['average_minutes_Planned']) / planned_vs_unplanned_key['average_minutes_Unplanned'] * 100
+    # )
+    return planned_vs_unplanned_key
 
 # Prepare data for Prophet model
 def prepare_prophet_data(df, plant, func_area, equipment_id):
@@ -100,27 +100,28 @@ def main():
     file_path = 'IWC_Work_Orders_Extract.csv'
     date_columns = ['EXECUTION_START_DATE', 'EXECUTION_FINISH_DATE', 'EQUIP_START_UP_DATE', 'EQUIP_VALID_FROM', 'EQUIP_VALID_TO']
     selected_plant = 'COTA'
-    selected_func_area = 'CANLINE'
+    selected_func_area = 'CAN LINE'
     selected_equipment = 300025792.0
 
     # Load and preprocess data
     df = load_data(file_path)
+
     df = preprocess_dates(df, date_columns)
 
     # Aggregate data
-    pivoted_df = aggregate_data(df)
+    planned_vs_unplanned_df = aggregate_data(df)
 
     # Calculate average minutes for planned and unplanned maintenance
-    avg_mins_planned = pivoted_df[
-        (pivoted_df['PRODUCTION_LOCATION'] == selected_plant) &
-        (pivoted_df['FUNCTIONAL_AREA_NODE_2_MODIFIED'] == selected_func_area) &
-        (pivoted_df['EQUIPMENT_ID'] == selected_equipment)
+    avg_mins_planned = planned_vs_unplanned_df[
+        (planned_vs_unplanned_df['PRODUCTION_LOCATION_'] == selected_plant) &
+        (planned_vs_unplanned_df['FUNCTIONAL_AREA_NODE_2_MODIFIED_'] == selected_func_area) &
+        (planned_vs_unplanned_df['EQUIPMENT_ID_'] == selected_equipment)
     ]['average_minutes_Planned'].iloc[0]
 
-    avg_mins_unplanned = pivoted_df[
-        (pivoted_df['PRODUCTION_LOCATION'] == selected_plant) &
-        (pivoted_df['FUNCTIONAL_AREA_NODE_2_MODIFIED'] == selected_func_area) &
-        (pivoted_df['EQUIPMENT_ID'] == selected_equipment)
+    avg_mins_unplanned = planned_vs_unplanned_df[
+        (planned_vs_unplanned_df['PRODUCTION_LOCATION_'] == selected_plant) &
+        (planned_vs_unplanned_df['FUNCTIONAL_AREA_NODE_2_MODIFIED_'] == selected_func_area) &
+        (planned_vs_unplanned_df['EQUIPMENT_ID_'] == selected_equipment)
     ]['average_minutes_Unplanned'].iloc[0]
 
     # Prepare data for Prophet model and forecast
