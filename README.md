@@ -46,6 +46,7 @@ The one problem with this, and what we adjusted for in our final group project, 
 ![image](https://github.com/user-attachments/assets/999a79b1-79be-4f5b-a50b-688d9fcd6a4a)
 
 ## streamlit_app.py
+---
 This app shows what this might look like for stakeholder use. Eventually, this was turned into a PowerBI app, which was built off of models running upstream on pieces of equipment in order to forecast time. The streamlit app generically forecasted out 100 days, so the metrics aren't really digestible. In PowerBI, we operated on a month to month basis.
 
 ![Screenshot 2024-12-08 at 3 56 13 PM](https://github.com/user-attachments/assets/c467f7ed-7ca2-47e7-9adb-c61f014ca503)
@@ -54,4 +55,6 @@ Final Dashboard (example three equipments):
 
 ![Screenshot 2024-12-08 at 3 59 24 PM](https://github.com/user-attachments/assets/451ef0c0-be01-401b-93d2-7cd904883cad)
 
-##
+## lifetimes.ipynb
+---
+This was just an effort to see how I could predict next maintenance actiivty date by equipment, I didn't get to flush out this approach too much. What I liked about the Prophet Modeling is that it was dynamic in a sense that it would change autmatically due to trends, rather than just simply an average of time between jobs.
