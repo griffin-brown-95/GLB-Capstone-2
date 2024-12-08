@@ -12,9 +12,25 @@ Date: Fall 2024
 ----
 As the primary bottler of Coca-Cola products in the Western United States, Swire Coca-Cola's operational efficiency affects the entire distribution network. Despite achieving 94% mechanical efficiency, unforeseen machine breakdowns and inadequate predictive maintenance lead to significant downtime. This shortfall in meeting demand results in an annual loss of approximately $60 million in uncaptured revenue. The current process—issuing work orders, waiting for parts, and making repairs—often lacks the foresight to prevent these downtimes, leading to extended production stoppages and impacting overall performance.
 
-## Personal Goal
+## Overview
 ---
-As this was a group project, my personal goals and work are reflected in this project. I wanted to be able to forecast jobs for the future and optimize time, since time spent maintaining resulted in expenses. This was realized by forecasting jobs for the future, and if we know that they are in the future, the job could be considered "planned." Planned maintenance by part was consistenly lower than unplanned, so applying a "planned" schedule resulted in overall less minutes.
+### Business Problem and Project Objective
+Swire Coca-Cola faces significant downtime due to unforeseen machine breakdowns and inadequate predictive maintenance, resulting in an estimated $60 million annual loss in uncaptured revenue. The goal of the project was to develop a predictive maintenance solution using time series forecasting to optimize maintenance schedules, reduce unplanned downtime, and improve operational efficiency.
+
+### Group's Solution to the Business Problem
+The team implemented a time series forecasting model using Prophet to predict maintenance times. By identifying and shifting unplanned maintenance to planned schedules, the solution demonstrated a reduction in overall maintenance time. Forecasts were initially showcased in a Streamlit app and later transitioned to a Power BI dashboard for stakeholder use.
+
+### Personal Contribution to the Project
+Contributions included exploring maintenance time predictions and developing dynamic time series models. Initial EDA was conducted to uncover key insights, such as the significant time differences between planned and unplanned maintenance. The Prophet model was implemented to forecast maintenance times, and a prototype Streamlit app was developed to visualize the forecasts. Efforts focused on differentiating planned and unplanned maintenance to optimize schedules effectively.
+
+### Business Value of the Solution
+The solution provided a clear strategy for reducing unplanned downtime, leading to cost savings and improved operational efficiency. Transitioning unplanned tasks to planned maintenance schedules demonstrated significant potential to minimize downtime and reduce associated costs.
+
+### Difficulties Encountered
+Challenges included ensuring accurate integration of forecast data due to the mix of planned and unplanned maintenance and balancing task reallocation. Initial EDA efforts were overly focused on specific solutions, limiting broader insights early in the process.
+
+### Key Learnings
+Key takeaways included the importance of balancing exploratory data analysis with broader business insights and the value of dynamic forecasting models for predictive maintenance. Additionally, transitioning prototype solutions into stakeholder-friendly dashboards provided valuable experience in delivering actionable insights.
 
 # Files
 ## eda.ipynb
