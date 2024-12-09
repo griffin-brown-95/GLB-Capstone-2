@@ -30,7 +30,7 @@ The solution provided a clear strategy for reducing unplanned downtime, leading 
 Challenges included ensuring accurate integration of forecast data due to the mix of planned and unplanned maintenance and balancing task reallocation. Initial EDA efforts were overly focused on specific solutions, limiting broader insights early in the process.
 
 ### Key Learnings
-Key takeaways included the importance of balancing exploratory data analysis with broader business insights and the value of dynamic forecasting models for predictive maintenance. Additionally, transitioning prototype solutions into stakeholder-friendly dashboards provided valuable experience in delivering actionable insights.
+Key takeaways included the importance of balancing exploratory data analysis with broader business insights and the value of dynamic forecasting models for predictive maintenance. Additionally, transitioning prototype solutions into stakeholder-friendly dashboards provided valuable experience in delivering actionable insights. In our presentation, we could have done a better job of offering our solution to stakeholders due to taking a more creative route.
 
 # Files
 ## eda.ipynb
